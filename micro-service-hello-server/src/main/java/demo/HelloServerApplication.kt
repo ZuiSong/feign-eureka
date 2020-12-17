@@ -4,6 +4,7 @@ import feign.*
 import org.springframework.beans.factory.annotation.*
 import org.springframework.boot.*
 import org.springframework.boot.autoconfigure.*
+import org.springframework.boot.autoconfigure.jdbc.*
 import org.springframework.cloud.client.discovery.*
 import org.springframework.cloud.openfeign.*
 import org.springframework.context.annotation.*
@@ -18,24 +19,15 @@ fun main(args: Array<String>) {
 /**
  * @author Chen
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = [DataSourceAutoConfiguration::class])
 @EnableDiscoveryClient
 @RestController
 @EnableFeignClients
 class HelloServerApplication {
-  @Autowired
-  private lateinit var client: DiscoveryClient
 
   @Bean
   fun feignLoggerLevel(): Logger.Level {
     return Logger.Level.FULL
-  }
-
-  @Bean
-  fun applicationRunner() = ApplicationRunner {
-    client.services.forEach {
-      println(it)
-    }
   }
 
 }

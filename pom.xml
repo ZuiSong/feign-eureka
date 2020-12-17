@@ -20,6 +20,8 @@
     <revision>1.0.1</revision>
     <maven.version>3.6.1</maven.version>
     <file.encoding>UTF-8</file.encoding>
+    <seata.version>1.1.0</seata.version>
+    <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
     <java.version>1.8</java.version>
     <kotlin.version>1.4.21</kotlin.version>
     <spring-cloud.version>2020.0.1</spring-cloud.version>
@@ -31,6 +33,12 @@
 
 
   <repositories>
+
+    <repository>
+      <id>bintray.kotlin.eap</id>
+      <url>https://dl.bintray.com/kotlin/kotlin-eap</url>
+    </repository>
+
     <repository>
       <id>huawei</id>
       <url>https://mirrors.huaweicloud.com/repository/maven/</url>
@@ -41,9 +49,22 @@
         <enabled>true</enabled>
       </releases>
     </repository>
+
   </repositories>
 
   <pluginRepositories>
+
+    <pluginRepository>
+      <id>bintray.kotlin.eap</id>
+      <url>https://dl.bintray.com/kotlin/kotlin-eap</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+
     <pluginRepository>
       <id>huawei</id>
       <url>https://mirrors.huaweicloud.com/repository/maven/</url>
@@ -54,6 +75,7 @@
         <enabled>true</enabled>
       </releases>
     </pluginRepository>
+
   </pluginRepositories>
 
   <dependencyManagement>
@@ -105,6 +127,14 @@
         <scope>import</scope>
       </dependency>
 
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
     </dependencies>
 
   </dependencyManagement>
@@ -125,6 +155,11 @@
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test</artifactId>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
     </dependency>
 
     <dependency>
@@ -212,6 +247,7 @@
         <configuration>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>

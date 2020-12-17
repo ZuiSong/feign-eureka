@@ -5,7 +5,24 @@ spring:
   application:
     name: hello-client
   cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
     config:
       uri: http://localhost:8888
   profiles:
     active: dev
+  datasource:
+    hikari:
+      username: root
+      password: chenjian
+      driver-class-name: com.mysql.jdbc.Driver
+      connection-timeout: 30000
+      auto-commit: true
+      max-lifetime: 1800000
+      pool-name: DatebookHikariCP
+      minimum-idle: 5
+      connection-test-query: SELECT 1
+      maximum-pool-size: 15
+      idle-timeout: 30000
+      jdbc-url: "jdbc:mysql://abc.mmooo.cn:3307/test1?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8"
